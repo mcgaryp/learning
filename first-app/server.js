@@ -1,14 +1,14 @@
-const http = require('http');
+const express = require("express");
+const path = require("path");
 
-const hostname = '127.0.0.1';
-const port = 4000;
+const app = express();
 
-const server = http.createServer(function(req, res) {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
+app.use(express.json());
 
-server.listen(port, hostname, function() {
-  console.log('Server running at http://'+ hostname + ':' + port + '/');
-});
+app.get('/', (req, res) => {
+  // TODO: Set current directory
+  res.render(__dirname + "/pages/index")
+})
+
+const port = 4000
+app.listen(port, () => console.log(`Server running on ${port}`));
